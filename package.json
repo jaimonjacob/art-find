@@ -1,0 +1,22 @@
+{
+  "name": "art-find",
+  "version": "1.0.0",
+  "description": "[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/web-platform-zvphnr)",
+  "default": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html && parcel watch index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "bulma": "^0.9.4",
+    "core-js": "^3.29.1",
+    "ionicons": "^7.0.0",
+    "regenerator-runtime": "^0.13.11"
+  }
+}
