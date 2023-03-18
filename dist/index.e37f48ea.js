@@ -568,6 +568,8 @@ var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
 var _resultsViewJs = require("./views/resultsView.js");
 var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
+var _paginationViewJs = require("./views/paginationView.js");
+var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
 const renderResult = async function() {
     try {
         const id = window.location.hash.slice(1);
@@ -591,7 +593,7 @@ const init = function() {
 };
 init();
 
-},{"core-js/modules/es.regexp.flags.js":"gSXXb","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/artView.js":"lPK9d","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gSXXb":[function(require,module,exports) {
+},{"core-js/modules/es.regexp.flags.js":"gSXXb","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/artView.js":"lPK9d","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/paginationView.js":"6z7bi"}],"gSXXb":[function(require,module,exports) {
 var global = require("68b5088c08dad16e");
 var DESCRIPTORS = require("3cce2df456313eed");
 var defineBuiltInAccessor = require("c05458336eb0b73a");
@@ -2842,6 +2844,17 @@ class ResultsView extends (0, _viewJsDefault.default) {
 }
 exports.default = new ResultsView;
 
-},{"./View.js":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire6ffc")
+},{"./View.js":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6z7bi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _view = require("./View");
+var _viewDefault = parcelHelpers.interopDefault(_view);
+class PaginationView extends (0, _viewDefault.default) {
+    _parentEL = document.querySelector(`.pagination`);
+    showPagination;
+}
+exports.default = new PaginationView;
+
+},{"./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire6ffc")
 
 //# sourceMappingURL=index.e37f48ea.js.map

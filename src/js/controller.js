@@ -4,6 +4,7 @@ import * as model from './model.js'
 import artView from './views/artView.js'
 import searchView from './views/searchView.js'
 import resultsView from './views/resultsView.js'
+import paginationView from './views/paginationView.js'
 
 const renderResult = async function (){ 
 try {
