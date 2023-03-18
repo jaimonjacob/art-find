@@ -1,10 +1,13 @@
 import {API_URL} from './config.js'
+import { RESULST_PER_PAGE } from './config.js'
 import {getJson} from './helpers.js'
 
 export const state = {
   art:{},
   search: {
   query:'',
+  currPage: '',
+  resPerPage: RESULST_PER_PAGE,
   results: []
   }
 }
@@ -16,8 +19,7 @@ try{
   state.art = {
     artId: results.id,
     artTitle: results.title,
-    artDescription: results.wall_description,
-    artUrl: results.url,
+    artDescription: results.wall_description ? results.wall_description : (results.digital_description ? results.digital_description: results.tombstone),
     artImage: results.images.web.url,
     artArtist: results.creditline,
     artDate: results.creation_date
@@ -49,3 +51,10 @@ export const loadSearchResults  = async function(query){
   }  
   }
 
+
+
+export const showResultsPerPage = function(currPage){
+  const start = (currPage -1) * state.search.resPerPage;
+  const end = currPage * state.search.resPerPage;
+  return state.search.results.slice(start,end)
+}

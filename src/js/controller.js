@@ -21,9 +21,8 @@ const showSearchResults = async function(){
   const query = searchView.getQuery();
   resultsView.renderSpinner();
   await model.loadSearchResults(query);
-  resultsView.render(model.state.search.results)
-  console.log(query)
-}
+  resultsView.render(model.showResultsPerPage(1))
+  }
 
 
 const init = function(){

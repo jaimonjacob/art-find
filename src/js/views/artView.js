@@ -20,7 +20,7 @@ class ArtView extends View {
 
                                 <p class="title article-title">${this._data.artTitle}</p>
                                 <p class="subtitle is-6 article-subtitle">
-                                    <a href=${this._data.artUrl} target="_blank">${this._data.artArtist}</a> on ${this._data.artDate}
+                                    <a href=${this._data.artUrl} target="_blank">${this._data.artArtist}</a> ${this._data.artDate}
                                 </p>
                                 <!-- END TITLE -->
                             </div>
