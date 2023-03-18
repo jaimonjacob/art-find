@@ -1,0 +1,47 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+@import url('//cdn.jsdelivr.net/npm/bulma-list/css/bulma-list.css');
+
+  .loader-wrapper {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    opacity: 1;
+    z-index: -1;
+    transition: opacity 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-size: large;
+    
+    }
+  
+    .loader {
+      height: 80px !important;
+      width: 80px !important;
+      border: 5px solid #14b12e !important;
+      border-radius: 9999px;
+      border-right-color: #ffe08a !important;
+      border-top-color: #ffe08a !important;
+    }
+  
+  .loader.is-active {
+      opacity: 1;
+      z-index: 1;
+    }
+  
+    .info-msg,
+    .success-msg,
+    .warning-msg,
+    .error-msg {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 3px 3px 3px 3px;
+    }
+    .warning-msg {
+      color: #9F6000;
+      background-color: #FEEFB3;
+    }
+
+    .circle img {object-fit: cover; }

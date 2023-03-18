@@ -5,18 +5,19 @@
   "default": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html && parcel watch index.html",
+    "start": "parcel src/index.html && parcel watch src/index.html",
     "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5"
-  },
   "dependencies": {
     "bulma": "^0.9.4",
     "core-js": "^3.29.1",
-    "ionicons": "^7.0.0",
     "regenerator-runtime": "^0.13.11"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
   }
 }

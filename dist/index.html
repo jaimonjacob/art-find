@@ -6,32 +6,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, 
                    initial-scale=1">
-  <title>GFG Bulma starter template</title>
-  <link rel="stylesheet" href="/styles.8986bff4.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-list/css/bulma-list.css">
-
-<script src="/styles.8986bff4.js"></script></head>
+  <title>GFG Bulma starter template</title>  
+  <link rel="stylesheet" href="/index.2103b895.css">
+</head>
 
 <body>
-
   <section class="section">
     <div class="container">
 
       <!-- Search form starts -->
+      
       <div class="container">
+        <form class="search-form">
         <div class="columns is-centered" "="">
-                <div class="control">
-          <input class="input " type="text" placeholder="Enter search term">
+          <div class="field is-grouped">
+              <form class="search-form">
+                <p class="control is-expanded is-centered">
+                <input class="input search-field" type="text" placeholder="Find art">
+                </p>
+                <p class="control">
+                  <button type="submit" class="button is-primary">
+                Search
+              </button>
+            </p>
+          </form></div>
+          
         </div>
-        <div class="control">
-          <a class="button is-primary ml-2">
-            Search
-          </a>
-        </div>
+        </form>
       </div>
+
+      
     </div>
       
       <!-- Search form ends  -->
@@ -43,14 +47,11 @@
  -->
 
 <!-- warning
-<div class="icon-text">
-  <span class="icon is-large has-text-danger">
-  <ion-icon name="warning-outline"></ion-icon>
-  </span>
+<div class="warning-msg">
+  <i class="fa fa-warning"></i>
+  This is a warning message.
 </div>
-<p class="block">
-  Some information is missing from your profile details.
-</p> -->
+-->
 
 
 
@@ -60,10 +61,11 @@
 
 <!-- Results section starts -->
 
-<div class="list search-results has-overflow-ellipsis is-outlined is-primary">
+
+<div class="list search-results has-hoverable-list-items has-overflow-ellipsis is-outlined is-primary">
+<!--
+  <a href="#130708">
   
-  <a href="#130707">
-  <!-- Result one -->
   <div class="list-item">
     <div class="list-item-image">
       <figure class="image is-64x64">
@@ -73,11 +75,11 @@
 
     <div class="list-item-content">
       <div class="list-item-title">List item</div>
-      <div class="list-item-description">A very long description can have an ellipsis overflow if you want the text to remain all on a single line without wrapping</div>
+      <div class="list-item-description">List item description</div>
     </div>
   </div>
   </a>
-  <!-- Result  two -->
+  
 
   <div class="list-item">
     <div class="list-item-image">
@@ -87,17 +89,17 @@
     </div>
 
     <div class="list-item-content">
-      <div class="list-item-title">Very long titles will also have overflow hidden if they are wider than the container</div>
-      <div class="list-item-description">A very long description can have an ellipsis overflow if you want the text to remain all on a single line without wrapping</div>
+      <div class="list-item-title">List item</div>
+      <div class="list-item-description">List item description</div>
     </div>
   </div>
-
+-->
 
 </div>
 
   <!-- Navigation buttons -->
  <nav class="pagination mt-5" role="navigation" aria-label="pagination">
-  <a class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+  <a class="pagination-previous" title="This is the first page">Previous</a>
   <a class="pagination-next">Next page</a>
 </nav>
 
@@ -108,8 +110,8 @@
 <div class="container art-view m-5">
        
  </div>
-  </div></div></section>
-  <script type="module" src="/script.75da7f30.js"></script>
+  </div></section>
+  <script src="/index.e37f48ea.js" defer=""></script>
 </body>
 
 </html>

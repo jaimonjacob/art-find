@@ -1,0 +1,46 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+@import "//cdn.jsdelivr.net/npm/bulma-list/css/bulma-list.css";
+.loader-wrapper {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  z-index: -1;
+  background: #fff;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  transition: opacity .3s;
+  display: flex;
+}
+
+.loader {
+  border-radius: 9999px;
+  height: 80px !important;
+  width: 80px !important;
+  border: 5px solid #ffe08a !important;
+  border-color: #ffe08a #ffe08a #14b12e #14b12e !important;
+}
+
+.loader.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.info-msg, .success-msg, .warning-msg, .error-msg {
+  border-radius: 3px;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.warning-msg {
+  color: #9f6000;
+  background-color: #feefb3;
+}
+
+.circle img {
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=index.2103b895.css.map */
