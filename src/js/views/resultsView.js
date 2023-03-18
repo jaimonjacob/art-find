@@ -7,15 +7,12 @@ class ResultsView extends View{
         return this._data.map(el => this._getMarkupItems(el)).join('')
     }
 
-
     _getMarkupItems(data){
         return `
         <a href=#${data.artId}>
         <div class="list-item">
         <div class="list-item-image">
-         <figure class="image is-64x64">
-        <img class="is-rounded" src=${data.artImage}>
-        </figure>
+        <img class="listImage" src=${data.artImage}>
         </div>
 
         <div class="list-item-content">
