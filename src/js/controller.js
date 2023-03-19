@@ -22,14 +22,22 @@ const showSearchResults = async function(){
   const query = searchView.getQuery();
   resultsView.renderSpinner();
   await model.loadSearchResults(query);
-  resultsView.render(model.showResultsPerPage(1))
+  resultsView.render(model.showResultsPerPage())
   paginationView.render(model.state.search)
   }
 
 
+const showPagination = function(goTo){
+  resultsView.render(model.showResultsPerPage(goTo))
+  paginationView.render(model.state.search)
+ 
+}
+
 const init = function(){
   artView.addHandler(renderResult)
   searchView.addHandler(showSearchResults)
+  paginationView.addHandler(showPagination)
+
 }
 
 init();
