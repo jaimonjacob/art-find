@@ -1,12 +1,12 @@
-import {API_URL} from './config.js'
-import { RESULST_PER_PAGE } from './config.js'
+import { API_URL, RESULST_PER_PAGE, MAX_RESULT_LIMIT } from './config.js'
+
 import {getJson} from './helpers.js'
 
 export const state = {
   art:{},
   search: {
   query:'',
-  currPage: '',
+  currPage: 1,
   resPerPage: RESULST_PER_PAGE,
   results: []
   }
@@ -31,7 +31,8 @@ try{
 
 export const loadSearchResults  = async function(query){
   try{
-    const data = await getJson(`${API_URL}?q=${query}&limit=20&has_image=1`)  
+    //&limit=20 (limiting search)
+    const data = await getJson(`${API_URL}?q=${query}&limit=${MAX_RESULT_LIMIT}&has_image=1`)  
     //state.art.search.query = query;
     const results = data.data    
     state.search.query = query;
@@ -53,8 +54,9 @@ export const loadSearchResults  = async function(query){
 
 
 
-export const showResultsPerPage = function(currPage){
+export const showResultsPerPage = function(currPage = state.search.currPage){
   const start = (currPage -1) * state.search.resPerPage;
   const end = currPage * state.search.resPerPage;
+  state.search.currPage = currPage;
   return state.search.results.slice(start,end)
 }
