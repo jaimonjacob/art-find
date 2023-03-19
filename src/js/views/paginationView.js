@@ -14,7 +14,12 @@ class PaginationView extends View{
 
      //if the current page is 1 and there are more pages
      if (currPage === 1 && numPages > 1) {
-        return `first page, more pages`
+        return `<button class="has-text-primary pagination-previous">
+        <span class="icon">
+          <i class="fa fa-arrow-left"></i>
+        </span>
+        <span>1</span>
+      </button>`
 
      }
 
