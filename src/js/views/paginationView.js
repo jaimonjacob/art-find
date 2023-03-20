@@ -15,9 +15,7 @@ class PaginationView extends View{
 
      //if the current page is 1 and there are more pages
      if (currPage === 1 && numPages > 1) {
-      console.log(`current page is 1 and there are more pages`)  
       return `
-
       <div class="nav-btn">
       </div>
 
@@ -27,12 +25,13 @@ class PaginationView extends View{
         <span class="icon">
           <i class="fa fa-arrow-right"></i>
         </span>
-        </button>`
+        </button>
+        
+        `
      }
 
     //if the current page is the last page
-    if (currPage === numPages && numPages > 1) {
-      console.log(`current page is the last page`)    
+    if (currPage === numPages && numPages > 1) { 
       return `
         <button data-goto=${currPage-1} class="has-text-primary pagination-previous">
         <span class="icon">
@@ -46,7 +45,6 @@ class PaginationView extends View{
      //if the current page is any other page
       
      if (currPage > 1 && numPages > 1) {
-      console.log(`current page is any other page`)     
         return ` 
         <button data-goto=${currPage-1} class="has-text-primary pagination-previous">
         <span class="icon">
@@ -73,7 +71,7 @@ class PaginationView extends View{
 addHandler(handler){
   this._parentEl.addEventListener(`click`, function(e){
     const btn = e.target.closest(`button`)
-    console.log(btn)
+    if(!btn) return;
     const goTo = +btn.dataset.goto
     console.log(goTo)
     handler(goTo)

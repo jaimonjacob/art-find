@@ -19,11 +19,15 @@ try {
 }
 
 const showSearchResults = async function(){
-  const query = searchView.getQuery();
-  resultsView.renderSpinner();
-  await model.loadSearchResults(query);
-  resultsView.render(model.showResultsPerPage())
-  paginationView.render(model.state.search)
+  try{
+    const query = searchView.getQuery();
+    resultsView.renderSpinner();
+    await model.loadSearchResults(query);
+    resultsView.render(model.showResultsPerPage())
+    paginationView.render(model.state.search)    
+  } catch(err){
+    resultsView.renderError(err);
+  }
   }
 
 
@@ -41,6 +45,3 @@ const init = function(){
 }
 
 init();
-
-
-

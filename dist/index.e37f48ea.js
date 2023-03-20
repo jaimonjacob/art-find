@@ -582,11 +582,15 @@ const renderResult = async function() {
     }
 };
 const showSearchResults = async function() {
-    const query = (0, _searchViewJsDefault.default).getQuery();
-    (0, _resultsViewJsDefault.default).renderSpinner();
-    await _modelJs.loadSearchResults(query);
-    (0, _resultsViewJsDefault.default).render(_modelJs.showResultsPerPage());
-    (0, _paginationViewJsDefault.default).render(_modelJs.state.search);
+    try {
+        const query = (0, _searchViewJsDefault.default).getQuery();
+        (0, _resultsViewJsDefault.default).renderSpinner();
+        await _modelJs.loadSearchResults(query);
+        (0, _resultsViewJsDefault.default).render(_modelJs.showResultsPerPage());
+        (0, _paginationViewJsDefault.default).render(_modelJs.state.search);
+    } catch (err) {
+        (0, _resultsViewJsDefault.default).renderError(err);
+    }
 };
 const showPagination = function(goTo) {
     (0, _resultsViewJsDefault.default).render(_modelJs.showResultsPerPage(goTo));
@@ -2601,6 +2605,7 @@ const loadArt = async function(id) {
             artId: results.id,
             artTitle: results.title,
             artDescription: results.wall_description ? results.wall_description : results.digital_description ? results.digital_description : results.tombstone,
+            artUrl: results.url,
             artImage: results.images.web.url,
             artArtist: results.creditline,
             artDate: results.creation_date
@@ -2615,6 +2620,7 @@ const loadSearchResults = async function(query) {
         const data = await (0, _helpersJs.getJson)(`${(0, _configJs.API_URL)}?q=${query}&limit=${(0, _configJs.MAX_RESULT_LIMIT)}&has_image=1`);
         //state.art.search.query = query;
         const results = data.data;
+        if (results.length === 0) throw new Error(`No items returned...🔥🔥🔥🔥🔥`);
         state.search.query = query;
         state.search.results = results.map((el)=>{
             return {
@@ -2869,10 +2875,7 @@ class PaginationView extends (0, _viewDefault.default) {
         console.log(currPage);
         //Identify the number of pages
         //if the current page is 1 and there are more pages
-        if (currPage === 1 && numPages > 1) {
-            console.log(`current page is 1 and there are more pages`);
-            return `
-
+        if (currPage === 1 && numPages > 1) return `
       <div class="nav-btn">
       </div>
 
@@ -2882,23 +2885,19 @@ class PaginationView extends (0, _viewDefault.default) {
         <span class="icon">
           <i class="fa fa-arrow-right"></i>
         </span>
-        </button>`;
-        }
+        </button>
+        
+        `;
         //if the current page is the last page
-        if (currPage === numPages && numPages > 1) {
-            console.log(`current page is the last page`);
-            return `
+        if (currPage === numPages && numPages > 1) return `
         <button data-goto=${currPage - 1} class="has-text-primary pagination-previous">
         <span class="icon">
           <i class="fa fa-arrow-left"></i>
         </span>
         <span>${currPage - 1}</span>
       </button>`;
-        }
         //if the current page is any other page
-        if (currPage > 1 && numPages > 1) {
-            console.log(`current page is any other page`);
-            return ` 
+        if (currPage > 1 && numPages > 1) return ` 
         <button data-goto=${currPage - 1} class="has-text-primary pagination-previous">
         <span class="icon">
           <i class="fa fa-arrow-left"></i>
@@ -2913,7 +2912,6 @@ class PaginationView extends (0, _viewDefault.default) {
       </span>
       </button>
       `;
-        }
         //if the current page is 1 and there are no  other pages 
         return ``;
     //Show the buttons based on the current page
@@ -2922,7 +2920,7 @@ class PaginationView extends (0, _viewDefault.default) {
     addHandler(handler) {
         this._parentEl.addEventListener(`click`, function(e) {
             const btn = e.target.closest(`button`);
-            console.log(btn);
+            if (!btn) return;
             const goTo = +btn.dataset.goto;
             console.log(goTo);
             handler(goTo);

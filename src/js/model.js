@@ -20,6 +20,7 @@ try{
     artId: results.id,
     artTitle: results.title,
     artDescription: results.wall_description ? results.wall_description : (results.digital_description ? results.digital_description: results.tombstone),
+    artUrl: results.url,
     artImage: results.images.web.url,
     artArtist: results.creditline,
     artDate: results.creation_date
@@ -34,7 +35,10 @@ export const loadSearchResults  = async function(query){
     //&limit=20 (limiting search)
     const data = await getJson(`${API_URL}?q=${query}&limit=${MAX_RESULT_LIMIT}&has_image=1`)  
     //state.art.search.query = query;
-    const results = data.data    
+    const results = data.data  
+    if (results.length === 0) {
+      throw new Error(`No items returned...🔥🔥🔥🔥🔥`)
+    }   
     state.search.query = query;
     state.search.results = results.map(el => {
       return {
