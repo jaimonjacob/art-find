@@ -23,6 +23,10 @@ class ArtView extends View {
                                     <a href=${this._data.artUrl} target="_blank">${this._data.artArtist}</a> ${this._data.artDate}
                                 </p>
                                 <!-- END TITLE -->
+                                <span class="icon">
+                                <i class="fav--icon fa fa-heart-o"></i>
+                              </span>
+
                             </div>
                         </div> 
 

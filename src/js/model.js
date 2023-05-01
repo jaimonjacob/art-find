@@ -50,7 +50,8 @@ export const loadSearchResults  = async function(query){
         artArtist: el.creditline,
         artDate: el.creation_date
       }
-    })  
+    })
+    state.search.currPage = 1;  
   } catch(err){
     throw err
   }  

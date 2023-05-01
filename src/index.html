@@ -11,34 +11,77 @@
 </head>
 
 <body>
+
+
   <section class="section">
     <div class="container">
 
-      <!-- Search form starts -->
-      
-      <div class="container">
-        <form class="search-form" >
-        <div class="columns is-centered"">
-          <div class="field is-grouped">
-              <form class="search-form" >
-                <p class="control is-expanded is-centered">
-                <input class="input search-field" type="text" placeholder="Find art">
-                </p>
-                <p class="control">
-                  <button type='submit' class="button is-primary">
-                Search
-              </button>
-            </p>
-          </div>
-          
-        </div>
-        </form>
-      </div>
-
-      
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="./assets/logo.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
-      
-      <!-- Search form ends  -->
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+     
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Favourits
+          </a>
+            <div class="navbar-dropdown">
+            <div class="favs mt-2">
+            <a class="box favs-link" href=# >
+              Art title asdfdsfds - artist  fdsfdsfdsafdsaf sadfdsafas sadfdsaf sadfdsaf
+            </a>
+          </div>
+
+          <div class="favs mt-2">
+            <a class="box favs-link" href=# >
+              Art title asdfdsfds - artist  fdsfdsfdsafdsaf sadfdsafas sadfdsaf sadfdsaf
+            </a>
+          </div>
+
+          
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item field">
+          <form class="search-form" >
+            <div class="columns is-centered"">
+              <div class="field is-grouped">
+                  <form class="search-form" >
+                    <p class="control is-expanded is-centered">
+                    <input class="input search-field" type="text" placeholder="Find art">
+                    </p>
+                    <p class="control">
+                      <button type='submit' class="button is-primary">
+                    Search
+                  </button>
+                </p>
+              </div>
+              
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+</div>
+</section>
+
+
+
 
 <!--loader 
   <div class="loader-wrapper">
@@ -55,39 +98,27 @@
 
 
 
+<section class="section main--content">
 
-<div class="columns mt-5">
+<div class="columns">
 <div class="column is-one-third">
 
 <!-- Results section starts -->
 
 <div class="list search-results has-hoverable-list-items has-overflow-ellipsis is-outlined is-primary">
 <!--
-  <a href="#130708">
-  
-  <div class="list-item">
-    <div class="list-item-image">   
-        <img class="listImage" src="https://openaccess-cdn.clevelandart.org/1959.124/1959.124_web.jpg">
-    </div>
+     <a href=#>
+        <div class="list-item">
+        <div class="list-item-image">
+        <img class="listImage" src="https://placehold.co/600x400/png">
+        </div>
 
-    <div class="list-item-content">
-      <div class="list-item-title">List item</div>
-      <div class="list-item-description">List item description</div>
-    </div>
-  </div>
-  </a>
-  
-
-  <div class="list-item">
-    <div class="list-item-image">
-        <img class="listImage" src="https://openaccess-cdn.clevelandart.org/2016.89/2016.89_web.jpg">
-    </div>
-
-    <div class="list-item-content">
-      <div class="list-item-title">List item</div>
-      <div class="list-item-description">List item description</div>
-    </div>
-  </div>
+        <div class="list-item-content">
+        <div class="list-item-title">${data.artTitle}</div>
+         <div class="list-item-description">${data.artArtist}</div>
+        </div>
+        </div>
+        </a>
 -->
 
 </div>
@@ -111,14 +142,13 @@
   -->
 </nav>
 
-
-
 </div>
 
   <!-- Results section ends -->
 
-<div class="container art-view m-5">
-       
+<div class="container art-view">  
+  
+              
  </div>
   </section>
   <script  type="module" src="js/controller.js"></script>

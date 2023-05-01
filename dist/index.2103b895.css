@@ -50,4 +50,17 @@
   color: #26df66;
 }
 
+.fav--icon {
+  color: #26df66;
+  font-size: 30px;
+}
+
+.favs {
+  width: 20rem;
+}
+
+.favs-link {
+  text-overflow: ellipsis;
+}
+
 /*# sourceMappingURL=index.2103b895.css.map */

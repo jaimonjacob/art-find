@@ -2633,6 +2633,7 @@ const loadSearchResults = async function(query) {
                 artDate: el.creation_date
             };
         });
+        state.search.currPage = 1;
     } catch (err) {
         throw err;
     }
@@ -2739,6 +2740,10 @@ class ArtView extends (0, _viewDefault.default) {
                                     <a href=${this._data.artUrl} target="_blank">${this._data.artArtist}</a> ${this._data.artDate}
                                 </p>
                                 <!-- END TITLE -->
+                                <span class="icon">
+                                <i class="fav--icon fa fa-heart-o"></i>
+                              </span>
+
                             </div>
                         </div> 
 
