@@ -37,7 +37,14 @@ const showPagination = function(goTo){
  
 }
 
+const controlBookmarks = function(){ 
+  model.addBookmarks(model.state.art);
+  console.log(model.state)
+  artView.update(model.state.art)
+}
+
 const init = function(){
+  artView.addHandlerBookmarks(controlBookmarks)
   artView.addHandler(renderResult)
   searchView.addHandler(showSearchResults)
   paginationView.addHandler(showPagination)

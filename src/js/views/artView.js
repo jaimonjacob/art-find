@@ -8,6 +8,14 @@ class ArtView extends View {
   window.addEventListener('load', handler)
   }
 
+ addHandlerBookmarks(handler){
+  this._parentEl.addEventListener(`click`, function(e){
+    const btn = e.target.closest(`.fav--icon`)
+    if(!btn) return;
+    handler();
+ }
+)}
+
   _getMarkup(){
     return`<!-- START ARTICLE -->
 
@@ -24,7 +32,7 @@ class ArtView extends View {
                                 </p>
                                 <!-- END TITLE -->
                                 <span class="icon">
-                                <i class="fav--icon fa fa-heart-o"></i>
+                                <a><i class="fav--icon fa ${this._data.bookmarked ? 'fa-heart' : 'fa-heart-o' }"></i></a>
                               </span>
 
                             </div>
@@ -36,7 +44,7 @@ class ArtView extends View {
                           <figure class="image is-inline-block">
                             <img  src=${this._data.artImage}>
                           </figure>
-                        </div>
+                        </div>W
 
                         <!-- END FEATURED IMAGE -->
 

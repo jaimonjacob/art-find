@@ -8,6 +8,28 @@ export default class View {
         this._parentEl.insertAdjacentHTML('afterbegin', markup);
       }
 
+      update(data){
+        this._data = data;
+        const newMarkup = this._getMarkup()
+        const newDom = document.createRange().createContextualFragment(newMarkup);
+        const newElements = Array.from(newDom.querySelectorAll('*'));
+        const currElements = Array.from(this._parentEl.querySelectorAll('*'));
+        newElements.forEach((newEl, i) =>{
+          const currEl = currElements[i];
+          //Not using as we are not comparing any text
+          /*
+          if(!newEl.isEqualNode(currEl) && newEl.firstChild?.nodeValue.trim() !=='') {
+            console.log(newEl.firstChild?.nodeValue.trim())
+            currEl.textContent === newEl.textContent;
+          }
+          */
+          if(!newEl.isEqualNode(currEl)) {            
+          Array.from(newEl.attributes).forEach(attr => currEl.setAttribute(attr.name, attr.value))
+          }
+        })
+        
+      }
+
       renderSpinner(){
         const markup = 
         `<div class="loader-wrapper">

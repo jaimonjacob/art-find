@@ -9,8 +9,9 @@ export const state = {
   currPage: 1,
   resPerPage: RESULST_PER_PAGE,
   results: []
+  },
+  bookmarks: []
   }
-}
 
 export const loadArt = async function(id){
 try{
@@ -25,6 +26,7 @@ try{
     artArtist: results.creditline,
     artDate: results.creation_date
 }
+  state.bookmarks.some(el=> el.artId === id) ? state.art.bookmarked = true : state.art.bookmarked = false;
 } catch(err){
   throw err
 }  
@@ -57,7 +59,10 @@ export const loadSearchResults  = async function(query){
   }  
   }
 
-
+export const addBookmarks = function(art){
+  state.bookmarks.push(art);
+  if (art.artId === state.art.artId) state.art.bookmarked = true;
+}
 
 export const showResultsPerPage = function(currPage = state.search.currPage){
   const start = (currPage -1) * state.search.resPerPage;
