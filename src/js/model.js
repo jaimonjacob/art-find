@@ -26,7 +26,7 @@ try{
     artArtist: results.creditline,
     artDate: results.creation_date
 }
-  state.bookmarks.some(el=> el.artId === id) ? state.art.bookmarked = true : state.art.bookmarked = false;
+state.bookmarks.some(el=> el.artId === id) ? state.art.bookmarked = true : state.art.bookmarked = false;
 } catch(err){
   throw err
 }  
@@ -62,6 +62,14 @@ export const loadSearchResults  = async function(query){
 export const addBookmarks = function(art){
   state.bookmarks.push(art);
   if (art.artId === state.art.artId) state.art.bookmarked = true;
+  console.log(state.bookmarks)
+}
+
+export const deleteBookmarks = function(id){
+  const bIndex = state.bookmarks.findIndex(el => el.artId === id)
+  state.bookmarks.splice(bIndex, 1);
+  console.log(state.bookmarks)
+  if(id===state.art.artId) state.art.bookmarked = false
 }
 
 export const showResultsPerPage = function(currPage = state.search.currPage){

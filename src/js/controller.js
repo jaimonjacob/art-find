@@ -8,10 +8,10 @@ import paginationView from './views/paginationView.js'
 
 const renderResult = async function (){ 
 try {
-  const id = window.location.hash.slice(1);
+  const id = +(window.location.hash.slice(1));
   if (!id) return; 
   artView.renderSpinner();
-  await model.loadArt(id);  
+  await model.loadArt(id); 
   artView.render(model.state.art);
 } catch(err){
   artView.renderError(err);
@@ -38,8 +38,8 @@ const showPagination = function(goTo){
 }
 
 const controlBookmarks = function(){ 
+  model.state.art.bookmarked ? model.deleteBookmarks(model.state.art.artId) : model.addBookmarks(model.state.art); 
   model.addBookmarks(model.state.art);
-  console.log(model.state)
   artView.update(model.state.art)
 }
 
