@@ -5,6 +5,7 @@ import artView from './views/artView.js'
 import searchView from './views/searchView.js'
 import resultsView from './views/resultsView.js'
 import paginationView from './views/paginationView.js'
+import bookmarksView from './views/bookmarksView.js'
 
 const renderResult = async function (){ 
 try {
@@ -39,16 +40,21 @@ const showPagination = function(goTo){
 
 const controlBookmarks = function(){ 
   model.state.art.bookmarked ? model.deleteBookmarks(model.state.art.artId) : model.addBookmarks(model.state.art); 
-  model.addBookmarks(model.state.art);
   artView.update(model.state.art)
+  bookmarksView.render(model.state.bookmarks)
+}
+
+const controlLoadBookmarks = function(){
+  model.restoreStorage();
+  bookmarksView.render(model.state.bookmarks)
 }
 
 const init = function(){
+  bookmarksView.addEventHandlerBookmarks(controlLoadBookmarks)
   artView.addHandlerBookmarks(controlBookmarks)
   artView.addHandler(renderResult)
   searchView.addHandler(showSearchResults)
   paginationView.addHandler(showPagination)
-
 }
 
 init();

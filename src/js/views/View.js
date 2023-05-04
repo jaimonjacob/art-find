@@ -43,7 +43,7 @@ export default class View {
         this._parentEl.innerHTML = ``;
       }
     
-      renderError(errMessage){
+      renderError(errMessage = this._errorMessage){
         const markup = 
         `
         <div class="warning-msg">

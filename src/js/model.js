@@ -59,17 +59,27 @@ export const loadSearchResults  = async function(query){
   }  
   }
 
+export const persistStorage = function (data){
+  localStorage.setItem('bookmarks', JSON.stringify(data))
+}
+
+
 export const addBookmarks = function(art){
   state.bookmarks.push(art);
   if (art.artId === state.art.artId) state.art.bookmarked = true;
-  console.log(state.bookmarks)
+  persistStorage(state.bookmarks);
 }
 
 export const deleteBookmarks = function(id){
   const bIndex = state.bookmarks.findIndex(el => el.artId === id)
   state.bookmarks.splice(bIndex, 1);
-  console.log(state.bookmarks)
   if(id===state.art.artId) state.art.bookmarked = false
+  persistStorage(state.bookmarks);
+}
+
+export const restoreStorage = function(){
+  const retrivedData = JSON.parse(localStorage.getItem('bookmarks'))
+  if (retrivedData) state.bookmarks = retrivedData;
 }
 
 export const showResultsPerPage = function(currPage = state.search.currPage){

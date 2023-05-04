@@ -2,6 +2,7 @@ import View from "./View.js"
 
 class ResultsView extends View{
     _parentEl = document.querySelector(".search-results")
+    _errorMessage = `No search results`
 
     _getMarkup(){        
         return this._data.map(el => this._getMarkupItems(el)).join('')

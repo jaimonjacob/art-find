@@ -570,6 +570,8 @@ var _resultsViewJs = require("./views/resultsView.js");
 var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
 var _paginationViewJs = require("./views/paginationView.js");
 var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
+var _bookmarksViewJs = require("./views/bookmarksView.js");
+var _bookmarksViewJsDefault = parcelHelpers.interopDefault(_bookmarksViewJs);
 const renderResult = async function() {
     try {
         const id = +window.location.hash.slice(1);
@@ -598,10 +600,15 @@ const showPagination = function(goTo) {
 };
 const controlBookmarks = function() {
     _modelJs.state.art.bookmarked ? _modelJs.deleteBookmarks(_modelJs.state.art.artId) : _modelJs.addBookmarks(_modelJs.state.art);
-    _modelJs.addBookmarks(_modelJs.state.art);
     (0, _artViewJsDefault.default).update(_modelJs.state.art);
+    (0, _bookmarksViewJsDefault.default).render(_modelJs.state.bookmarks);
+};
+const controlLoadBookmarks = function() {
+    _modelJs.restoreStorage();
+    (0, _bookmarksViewJsDefault.default).render(_modelJs.state.bookmarks);
 };
 const init = function() {
+    (0, _bookmarksViewJsDefault.default).addEventHandlerBookmarks(controlLoadBookmarks);
     (0, _artViewJsDefault.default).addHandlerBookmarks(controlBookmarks);
     (0, _artViewJsDefault.default).addHandler(renderResult);
     (0, _searchViewJsDefault.default).addHandler(showSearchResults);
@@ -609,7 +616,7 @@ const init = function() {
 };
 init();
 
-},{"core-js/modules/es.regexp.flags.js":"gSXXb","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/artView.js":"lPK9d","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","./views/paginationView.js":"6z7bi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gSXXb":[function(require,module,exports) {
+},{"core-js/modules/es.regexp.flags.js":"gSXXb","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/artView.js":"lPK9d","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","./views/paginationView.js":"6z7bi","./views/bookmarksView.js":"4Lqzq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gSXXb":[function(require,module,exports) {
 var global = require("993d6de2e1113023");
 var DESCRIPTORS = require("f1464d1bfe7954ae");
 var defineBuiltInAccessor = require("8b185c5090549960");
@@ -2591,8 +2598,10 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadArt", ()=>loadArt);
 parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults);
+parcelHelpers.export(exports, "persistStorage", ()=>persistStorage);
 parcelHelpers.export(exports, "addBookmarks", ()=>addBookmarks);
 parcelHelpers.export(exports, "deleteBookmarks", ()=>deleteBookmarks);
+parcelHelpers.export(exports, "restoreStorage", ()=>restoreStorage);
 parcelHelpers.export(exports, "showResultsPerPage", ()=>showResultsPerPage);
 var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
@@ -2648,16 +2657,23 @@ const loadSearchResults = async function(query) {
         throw err;
     }
 };
+const persistStorage = function(data) {
+    localStorage.setItem("bookmarks", JSON.stringify(data));
+};
 const addBookmarks = function(art) {
     state.bookmarks.push(art);
     if (art.artId === state.art.artId) state.art.bookmarked = true;
-    console.log(state.bookmarks);
+    persistStorage(state.bookmarks);
 };
 const deleteBookmarks = function(id) {
     const bIndex = state.bookmarks.findIndex((el)=>el.artId === id);
     state.bookmarks.splice(bIndex, 1);
-    console.log(state.bookmarks);
     if (id === state.art.artId) state.art.bookmarked = false;
+    persistStorage(state.bookmarks);
+};
+const restoreStorage = function() {
+    const retrivedData = JSON.parse(localStorage.getItem("bookmarks"));
+    if (retrivedData) state.bookmarks = retrivedData;
 };
 const showResultsPerPage = function(currPage = state.search.currPage) {
     const start = (currPage - 1) * state.search.resPerPage;
@@ -2844,7 +2860,7 @@ class View {
     _clearHTML() {
         this._parentEl.innerHTML = ``;
     }
-    renderError(errMessage) {
+    renderError(errMessage = this._errorMessage) {
         const markup = `
         <div class="warning-msg">
         <i class="fa fa-warning"></i>
@@ -2888,6 +2904,7 @@ var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 class ResultsView extends (0, _viewJsDefault.default) {
     _parentEl = document.querySelector(".search-results");
+    _errorMessage = `No search results`;
     _getMarkup() {
         return this._data.map((el)=>this._getMarkupItems(el)).join("");
     }
@@ -2979,6 +2996,30 @@ class PaginationView extends (0, _viewDefault.default) {
 }
 exports.default = new PaginationView;
 
-},{"./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire6ffc")
+},{"./View":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Lqzq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+class BookmarksView extends (0, _viewJsDefault.default) {
+    _parentEl = document.querySelector(".navbar-dropdown");
+    _errorMessage = "No items bookmarked yet";
+    addEventHandlerBookmarks(handler) {
+        window.addEventListener("load", handler);
+    }
+    _getMarkup() {
+        return this._data.map((el)=>this._getMarkupItems(el)).join("");
+    }
+    _getMarkupItems(data) {
+        return `
+        <div class="favs mt-2">
+        <a class="box favs-link" href=#${data.artId}>${data.artTitle}</a>
+        </div>
+        `;
+    }
+}
+exports.default = new BookmarksView;
+
+},{"./View.js":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d8XZh","aenu9"], "aenu9", "parcelRequire6ffc")
 
 //# sourceMappingURL=index.e37f48ea.js.map
