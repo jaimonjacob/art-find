@@ -2658,7 +2658,7 @@ const loadSearchResults = async function(query) {
     }
 };
 const persistStorage = function(data) {
-    localStorage.setItem("bookmarks", JSON.stringify(data));
+    localStorage.setItem("art_bookmarks", JSON.stringify(data));
 };
 const addBookmarks = function(art) {
     state.bookmarks.push(art);
@@ -2672,7 +2672,7 @@ const deleteBookmarks = function(id) {
     persistStorage(state.bookmarks);
 };
 const restoreStorage = function() {
-    const retrivedData = JSON.parse(localStorage.getItem("bookmarks"));
+    const retrivedData = JSON.parse(localStorage.getItem("art_bookmarks"));
     if (retrivedData) state.bookmarks = retrivedData;
 };
 const showResultsPerPage = function(currPage = state.search.currPage) {
@@ -2828,6 +2828,7 @@ parcelHelpers.defineInteropFlag(exports);
 class View {
     _data;
     render(data) {
+        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
         this._data = data;
         const markup = this._getMarkup();
         this._clearHTML();

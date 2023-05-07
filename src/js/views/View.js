@@ -2,6 +2,7 @@ export default class View {
     _data  
 
     render(data){
+      if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
         this._data = data;
         const markup = this._getMarkup()
         this._clearHTML();
@@ -9,7 +10,7 @@ export default class View {
       }
 
       update(data){
-        this._data = data;
+         this._data = data;
         const newMarkup = this._getMarkup()
         const newDom = document.createRange().createContextualFragment(newMarkup);
         const newElements = Array.from(newDom.querySelectorAll('*'));

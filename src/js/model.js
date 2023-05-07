@@ -60,7 +60,7 @@ export const loadSearchResults  = async function(query){
   }
 
 export const persistStorage = function (data){
-  localStorage.setItem('bookmarks', JSON.stringify(data))
+  localStorage.setItem('art_bookmarks', JSON.stringify(data))
 }
 
 
@@ -78,7 +78,7 @@ export const deleteBookmarks = function(id){
 }
 
 export const restoreStorage = function(){
-  const retrivedData = JSON.parse(localStorage.getItem('bookmarks'))
+  const retrivedData = JSON.parse(localStorage.getItem('art_bookmarks'))
   if (retrivedData) state.bookmarks = retrivedData;
 }
 
