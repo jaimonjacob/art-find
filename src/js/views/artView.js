@@ -44,7 +44,7 @@ class ArtView extends View {
                           <figure class="image is-inline-block">
                             <img  src=${this._data.artImage}>
                           </figure>
-                        </div>W
+                        </div>
 
                         <!-- END FEATURED IMAGE -->
 

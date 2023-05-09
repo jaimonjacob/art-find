@@ -2797,7 +2797,7 @@ class ArtView extends (0, _viewDefault.default) {
                           <figure class="image is-inline-block">
                             <img  src=${this._data.artImage}>
                           </figure>
-                        </div>W
+                        </div>
 
                         <!-- END FEATURED IMAGE -->
 
